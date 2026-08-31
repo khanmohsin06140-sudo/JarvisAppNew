@@ -1,2 +1,2 @@
 - name: Unzip project file
-        run: unzip -o JarvisMohsinCore-1.zip
+        run: unzip -o JarvisMohsinCore.zip
