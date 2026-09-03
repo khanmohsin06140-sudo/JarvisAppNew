@@ -9,7 +9,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Unzip project file
-        run: unzip -o Code.zip
+        run: |
+          unzip -o Code.zip
+          cd JarvisMohsinCore
+          rm -f gradle/wrapper/gradle-wrapper.jar
+          gradle wrapper
 
       - uses: actions/setup-java@v4
         with:
