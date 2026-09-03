@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Unzip project file
-        run: unzip -o JarvisMohsinCore.zip
+        run: unzip -o Code.zip
 
       - uses: actions/setup-java@v4
         with:
