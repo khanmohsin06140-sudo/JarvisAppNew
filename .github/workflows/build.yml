@@ -1,35 +1,43 @@
-You are an expert Senior Android Build Engineer and Kotlin/Jetpack Compose Architect.
+ACT AS A SENIOR ANDROID BUILD ENGINEER, KOTLIN EXPERT, JETPACK COMPOSE EXPERT, AND GITHUB ACTIONS EXPERT.
 
-I have uploaded TWO files to this GitHub repository:
+I have uploaded these files to this GitHub repository:
 
-1. Code.zip
-2. generate_jarvis.py
+- Code.zip
+- generate_jarvis.py
 
-Repository name: JarvisAppNew
-
-YOUR JOB IS TO BUILD THE APK, NOT JUST EXPLAIN HOW TO BUILD IT.
+Repository:
+JarvisAppNew
 
 IMPORTANT:
-Do not leave Code.zip as the only project source.
-Do not expect me to manually unzip anything.
-You must perform all required repository modifications yourself.
+I need a REAL BUILDABLE Android APK.
 
-STEP 1 — EXTRACT THE PROJECT
---------------------------------------------------
-Extract Code.zip into the repository.
+DO NOT only explain the errors.
+DO NOT tell me that I should fix them manually.
+DO NOT stop after editing files.
 
-After extraction, inspect the ZIP structure carefully.
+YOU MUST:
+1. Extract the project.
+2. Inspect every Android/Gradle/Kotlin file.
+3. Fix all compilation errors.
+4. Configure GitHub Actions correctly.
+5. Run the Gradle build.
+6. Continue fixing errors until the Debug APK builds successfully.
+7. Upload the APK as a GitHub Actions artifact.
 
-If Code.zip contains a top-level JarvisMohsinCore/ directory, move its Android project contents to the repository root so that the repository ultimately looks approximately like:
+==================================================
+PART 1 — EXTRACT Code.zip CORRECTLY
+==================================================
 
-JarvisAppNew/
-├── .github/
-│   └── workflows/
-│       └── build.yml
-├── app/
-│   ├── build.gradle.kts
-│   └── src/
-├── gradle/
-│   └── wrapper/
-│       └── gradle-wrapper.properties
-├── build
+Code.zip is currently uploaded to the repository.
+
+Extract Code.zip.
+
+If the ZIP contains:
+
+JarvisMohsinCore/
+
+then move the Android project contents to the repository root.
+
+The final repository MUST NOT become:
+
+JarvisAppNew/JarvisMohsinCore/JarvisMoh
