@@ -1,40 +1,35 @@
-name: Build Android APK
+You are an expert Senior Android Build Engineer and Kotlin/Jetpack Compose Architect.
 
-on: [push, workflow_dispatch]
+I have uploaded TWO files to this GitHub repository:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+1. Code.zip
+2. generate_jarvis.py
 
-      - name: Unzip project file
-        run: |
-          unzip -o Code.zip
-          rm -f gradle/wrapper/gradle-wrapper.jar
-          gradle wrapper
+Repository name: JarvisAppNew
 
-      - uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
+YOUR JOB IS TO BUILD THE APK, NOT JUST EXPLAIN HOW TO BUILD IT.
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+IMPORTANT:
+Do not leave Code.zip as the only project source.
+Do not expect me to manually unzip anything.
+You must perform all required repository modifications yourself.
 
-      - name: Install SDK packages
-        run: yes | sdkmanager "platforms;android-34" "build-tools;34.0.0" > /dev/null
+STEP 1 — EXTRACT THE PROJECT
+--------------------------------------------------
+Extract Code.zip into the repository.
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: 8.7
+After extraction, inspect the ZIP structure carefully.
 
-      - name: Build APK
-        run: gradle assembleDebug --stacktrace --no-daemon
+If Code.zip contains a top-level JarvisMohsinCore/ directory, move its Android project contents to the repository root so that the repository ultimately looks approximately like:
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: Jarvis-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+JarvisAppNew/
+├── .github/
+│   └── workflows/
+│       └── build.yml
+├── app/
+│   ├── build.gradle.kts
+│   └── src/
+├── gradle/
+│   └── wrapper/
+│       └── gradle-wrapper.properties
+├── build
