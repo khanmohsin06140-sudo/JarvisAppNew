@@ -1,16 +1,23 @@
-Act as a Senior Full-Stack React Architect, DevOps Engineer and GitHub Actions expert.
+Act as an expert Full-Stack Web Developer and GitHub Actions DevOps Engineer.
 
-I have a ZIP file created by ChatGPT for my website:
+I want you to turn the ChatGPT-generated ZIP file in this repository into a fully working website.
+
+ZIP FILE:
 GurudevCollection_Code.zip
 
-IMPORTANT:
-1. Find the ZIP file in the repository.
-2. Extract/unzip it automatically.
-3. The extracted website project MUST be placed directly inside:
+DO EVERYTHING AUTOMATICALLY.
+
+STEP 1 — EXTRACT ZIP
+
+Find `GurudevCollection_Code.zip` in the repository.
+
+Extract/unzip it.
+
+The actual website project MUST be placed directly inside:
 
 app/
 
-FINAL REQUIRED STRUCTURE:
+The final structure MUST be:
 
 repository/
 ├── app/
@@ -21,67 +28,79 @@ repository/
 │   ├── postcss.config.js
 │   ├── src/
 │   ├── supabase/
-│   └── ...
+│   └── other project files
+│
 └── .github/
     └── workflows/
         └── build.yml
 
 CRITICAL:
-`app/package.json` MUST exist directly inside `app`.
+`app/package.json` must exist.
 
-NEVER create:
+DO NOT create:
 
 app/GurudevCollection_Code/package.json
 app/gurudev-collection/package.json
 app/project/package.json
 
-If the ZIP contains a parent folder, remove that unnecessary nesting and put the actual project files directly into `app/`.
+If the ZIP has an extra parent folder, remove that extra nesting and move the actual project contents directly into `app/`.
 
-Do not delete or truncate valid source code.
+STEP 2 — PRESERVE THE WEBSITE
 
-After extraction, inspect the complete project.
+Do not delete or truncate the ChatGPT-generated source code.
 
-PROJECT:
+Keep the React + Vite + Tailwind + Supabase architecture.
+
+The website is:
+
 Gurudev Collection
 
-LOCATION:
+Business location:
+
 Chhatrapati Sambhajinagar (Aurangabad), Maharashtra
 Shahganj
 HP Petrol Pump area
 
-Do not invent an exact street number or phone number.
+Do not invent an exact street address or phone number.
 
-TECHNOLOGY:
-- React
-- Vite
-- Tailwind CSS
-- React Router
-- Lucide React
-- Supabase-ready
-- Vercel-ready
+STEP 3 — WEBSITE FEATURES
 
-WEBSITE REQUIREMENTS:
-- Premium luxury clothing design
+Make sure the website contains:
+
+- Premium clothing/fashion design
 - Matte black #0a0a0a
 - Charcoal #141414
 - Metallic gold #D4AF37
-- White/off-white
-- Mobile-first responsive design
+- Responsive mobile design
+- Desktop design
+- Hero section
 - Product catalog
-- Categories
+- Product categories
 - Product cards
 - Product detail modal
-- Product image/video support
+- Product images
+- Optional product videos
 - Sizes
-- Price/MRP/discount
+- Price
+- MRP
+- Discount
 - Stock status
 - WhatsApp ordering
 - Store location
+- Footer
 - Admin page
-- Supabase integration
-- SEO for Chhatrapati Sambhajinagar/Aurangabad/Shahganj
+- Supabase-ready configuration
+- Vercel-ready configuration
 
-If a video URL exists, preserve:
+Products:
+
+T-Shirts
+Shirts
+Jeans
+Traditional
+Jackets
+
+If `video_url` exists, preserve:
 
 <video
   autoPlay
@@ -91,45 +110,32 @@ If a video URL exists, preserve:
   preload="metadata"
 />
 
-WhatsApp ordering must use encodeURIComponent().
+WhatsApp messages must use `encodeURIComponent()`.
 
 Never expose Supabase service-role/private keys.
 
-After placing the project inside `app`, verify the files.
+STEP 4 — FIX ROUTING
 
-Then run:
+Make sure React Router works correctly.
 
-cd app
-npm install
-npm run build
+Routes:
 
-If there are build errors, FIX THEM AUTOMATICALLY.
+/
+ /admin
 
-Do not just report the error.
+Configure the project so direct navigation to `/admin` works correctly when deployed on Vercel.
 
-Run the build again after every fix until successful.
+STEP 5 — CREATE/FIX GITHUB ACTIONS
 
-The final build MUST generate:
-
-app/dist/index.html
-
-IMPORTANT:
-Do NOT put this instruction text inside `.github/workflows/build.yml`.
-
-Now configure/fix GitHub Actions for the Gurudev Collection website.
-
-IMPORTANT:
-The workflow file is:
+The file:
 
 .github/workflows/build.yml
 
-It MUST contain ONLY valid GitHub Actions YAML.
+MUST contain ONLY valid GitHub Actions YAML.
 
-Do NOT paste natural-language instructions into build.yml.
+NEVER put this instruction text inside build.yml.
 
-Replace the existing invalid workflow if necessary.
-
-Use this exact workflow:
+Use this workflow:
 
 name: Build Gurudev Collection Website
 
@@ -155,8 +161,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: app/package-lock.json
 
       - name: Install dependencies
         run: npm install
@@ -164,52 +168,54 @@ jobs:
       - name: Build website
         run: npm run build
 
-      - name: Verify build output
+      - name: Verify build
         run: test -f dist/index.html
 
-      - name: Upload website build
+      - name: Upload website
         uses: actions/upload-artifact@v4
         with:
           name: gurudev-collection-dist
           path: app/dist
 
-Before running the workflow, verify:
+STEP 6 — TEST
 
-app/package.json
-app/index.html
-app/src/
-app/vite.config.js
+After organizing the files, run:
 
-MUST EXIST.
+cd app
+npm install
+npm run build
 
-There must NOT be an extra nested project directory.
-
-Correct:
-app/package.json
-
-Wrong:
-app/GurudevCollection_Code/package.json
-
-Then execute the build.
-
-If npm install or npm run build fails:
-1. Read the actual error.
-2. Fix the source/configuration.
-3. Run the build again.
-4. Continue until the build succeeds.
-
-Do not hide errors.
-Do not skip verification.
-Do not create fake files just to make the workflow green.
-
-Final requirement:
-
-The GitHub Actions build must successfully produce:
+The build MUST successfully create:
 
 app/dist/index.html
 
-The generated `dist` folder must be uploaded as the GitHub Actions artifact named:
+If there is any error:
 
-gurudev-collection-dist
+- Read the actual error
+- Fix the code/configuration
+- Run npm run build again
+- Continue until successful
 
-The website must remain compatible with Vercel deployment.
+Do NOT just tell me what the error is.
+FIX the error.
+
+STEP 7 — FINAL CHECK
+
+Verify all of these:
+
+app/package.json exists
+app/index.html exists
+app/src exists
+app/vite.config.js exists
+app/dist/index.html exists after build
+.github/workflows/build.yml is valid YAML
+GitHub Actions can build the website
+The website is Vercel compatible
+
+Do not create unnecessary nested folders.
+
+Do not replace the website with a different project.
+
+Do not leave the ZIP as the only project source.
+
+The final repository must contain the actual working website inside `app/`.
