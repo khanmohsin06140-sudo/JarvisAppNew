@@ -1,221 +1,41 @@
-Act as an expert Full-Stack Web Developer and GitHub Actions DevOps Engineer.
-
-I want you to turn the ChatGPT-generated ZIP file in this repository into a fully working website.
-
-ZIP FILE:
-GurudevCollection_Code.zip
-
-DO EVERYTHING AUTOMATICALLY.
-
-STEP 1 — EXTRACT ZIP
-
-Find `GurudevCollection_Code.zip` in the repository.
-
-Extract/unzip it.
-
-The actual website project MUST be placed directly inside:
-
-app/
-
-The final structure MUST be:
-
-repository/
-├── app/
-│   ├── package.json
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   ├── postcss.config.js
-│   ├── src/
-│   ├── supabase/
-│   └── other project files
-│
-└── .github/
-    └── workflows/
-        └── build.yml
-
-CRITICAL:
-`app/package.json` must exist.
-
-DO NOT create:
-
-app/GurudevCollection_Code/package.json
-app/gurudev-collection/package.json
-app/project/package.json
-
-If the ZIP has an extra parent folder, remove that extra nesting and move the actual project contents directly into `app/`.
-
-STEP 2 — PRESERVE THE WEBSITE
-
-Do not delete or truncate the ChatGPT-generated source code.
-
-Keep the React + Vite + Tailwind + Supabase architecture.
-
-The website is:
-
-Gurudev Collection
-
-Business location:
-
-Chhatrapati Sambhajinagar (Aurangabad), Maharashtra
-Shahganj
-HP Petrol Pump area
-
-Do not invent an exact street address or phone number.
-
-STEP 3 — WEBSITE FEATURES
-
-Make sure the website contains:
-
-- Premium clothing/fashion design
-- Matte black #0a0a0a
-- Charcoal #141414
-- Metallic gold #D4AF37
-- Responsive mobile design
-- Desktop design
-- Hero section
-- Product catalog
-- Product categories
-- Product cards
-- Product detail modal
-- Product images
-- Optional product videos
-- Sizes
-- Price
-- MRP
-- Discount
-- Stock status
-- WhatsApp ordering
-- Store location
-- Footer
-- Admin page
-- Supabase-ready configuration
-- Vercel-ready configuration
-
-Products:
-
-T-Shirts
-Shirts
-Jeans
-Traditional
-Jackets
-
-If `video_url` exists, preserve:
-
-<video
-  autoPlay
-  loop
-  muted
-  playsInline
-  preload="metadata"
-/>
-
-WhatsApp messages must use `encodeURIComponent()`.
-
-Never expose Supabase service-role/private keys.
-
-STEP 4 — FIX ROUTING
-
-Make sure React Router works correctly.
-
-Routes:
-
-/
- /admin
-
-Configure the project so direct navigation to `/admin` works correctly when deployed on Vercel.
-
-STEP 5 — CREATE/FIX GITHUB ACTIONS
-
-The file:
-
-.github/workflows/build.yml
-
-MUST contain ONLY valid GitHub Actions YAML.
-
-NEVER put this instruction text inside build.yml.
-
-Use this workflow:
-
-name: Build Gurudev Collection Website
+name: Auto Unzip Website Code
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'GurudevCollection_Code.zip'
   workflow_dispatch:
 
 jobs:
-  build:
+  extract-and-setup:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: app
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Unzip the Code automatically
+        run: |
+          echo "Unzipping the file..."
+          unzip GurudevCollection_Code.zip -d extracted_code
+          
+          echo "Finding the React project inside the zip..."
+          # Find the directory that has package.json
+          PROJECT_DIR=$(dirname $(find extracted_code -name package.json | head -n 1))
+          
+          echo "Moving files to the main repository..."
+          cp -r $PROJECT_DIR/* ./
+          
+          echo "Cleaning up ZIP and temporary folders..."
+          rm -rf extracted_code
+          rm GurudevCollection_Code.zip
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build website
-        run: npm run build
-
-      - name: Verify build
-        run: test -f dist/index.html
-
-      - name: Upload website
-        uses: actions/upload-artifact@v4
-        with:
-          name: gurudev-collection-dist
-          path: app/dist
-
-STEP 6 — TEST
-
-After organizing the files, run:
-
-cd app
-npm install
-npm run build
-
-The build MUST successfully create:
-
-app/dist/index.html
-
-If there is any error:
-
-- Read the actual error
-- Fix the code/configuration
-- Run npm run build again
-- Continue until successful
-
-Do NOT just tell me what the error is.
-FIX the error.
-
-STEP 7 — FINAL CHECK
-
-Verify all of these:
-
-app/package.json exists
-app/index.html exists
-app/src exists
-app/vite.config.js exists
-app/dist/index.html exists after build
-.github/workflows/build.yml is valid YAML
-GitHub Actions can build the website
-The website is Vercel compatible
-
-Do not create unnecessary nested folders.
-
-Do not replace the website with a different project.
-
-Do not leave the ZIP as the only project source.
-
-The final repository must contain the actual working website inside `app/`.
+      - name: Commit and Push extracted files
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Automated Action: Unzipped Gurudev Collection Code" || echo "No changes to commit"
+          git push
