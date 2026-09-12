@@ -1,69 +1,200 @@
-I have uploaded a ZIP file created by ChatGPT for my website project.
+Act as a Senior Full-Stack React Architect and UI/UX Engineer.
 
-ZIP FILE:
-GurudevCollection_Code.zip
+Build and finalize the Gurudev Collection luxury e-commerce website using the project already extracted inside:
 
-IMPORTANT:
-Do NOT treat the ZIP file as a single file to serve.
-You MUST extract/unzip the ZIP first.
+app/
 
-I want the extracted project to be placed inside this repository's `app/` folder.
+FIRST:
+Inspect the entire `app/` directory and understand the existing code before making changes.
 
-Required structure:
+TECHNOLOGY REQUIREMENTS:
+- React
+- Vite
+- Tailwind CSS
+- React Router
+- Lucide React
+- Supabase-ready architecture
+- Vercel deployment compatible
 
-repository-root/
-└── app/
-    ├── package.json
-    ├── index.html
-    ├── vite.config.js
-    ├── tailwind.config.js
-    ├── postcss.config.js
-    ├── src/
-    ├── supabase/
-    ├── public/ (if included)
-    └── other project files
-
-IMPORTANT:
-The ZIP itself contains the actual Vite project at its root. After extraction, `app/package.json` MUST exist directly inside the app folder.
-
-Do NOT create:
-app/GurudevCollection_Code/
-app/gurudev-collection/
-app/project/
-or any other extra nested project folder.
-
-After extracting:
-
-1. Inspect all extracted files.
-2. Preserve the complete source code.
-3. Do not truncate, remove, rename, or replace working files unnecessarily.
-4. Run:
-   cd app
-   npm install
-   npm run build
-5. Fix any build errors automatically.
-6. Make sure the final website successfully builds with Vite.
-7. The website must be deployable on Vercel.
-8. Configure SPA routing correctly so `/admin` works after deployment.
-9. Keep the existing React + Vite + Tailwind architecture.
-10. Do NOT convert the project to another framework.
-
-Business information:
-
-Brand:
+BRAND:
 Gurudev Collection
 
-Location:
+LOCATION:
 Chhatrapati Sambhajinagar (Aurangabad), Maharashtra
-
-Store area:
 Shahganj
+Near/at HP Petrol Pump, Shahganj
 
-Landmark:
-HP Petrol Pump, Shahganj
+DESIGN:
+- Matte Black: #0a0a0a
+- Charcoal: #141414
+- Metallic Gold: #D4AF37
+- White: #ffffff
+- Off White: #f3f4f6
+- Premium luxury fashion aesthetic
+- Mobile-first
+- Smooth animations
+- Responsive 2-column mobile product grid
+- 3-column tablet
+- 4-column desktop
 
-Use this location information in the Store Locator, footer, contact section and local SEO content.
+REQUIRED FEATURES:
 
-Do not invent an exact street number or fake phone number.
+1. HOME PAGE
+- Luxury hero section
+- "Gurudev Collection"
+- "Premium Style & Modern Fits"
+- Shop Collection CTA
+- Product catalog
+- Categories
+- Sorting
+- Product cards
+- Product detail modal
+- Footer
+- Store location/contact section
 
-The final result must be a working website inside `app/`.
+2. PRODUCTS
+Support:
+- T-Shirts
+- Shirts
+- Jeans
+- Traditional
+- Jackets
+
+Show:
+- Product image
+- Optional video preview
+- Product title
+- Selling price
+- MRP
+- Discount percentage
+- Available sizes
+- Stock status
+
+If video_url exists, use:
+
+<video
+  autoPlay
+  loop
+  muted
+  playsInline
+  preload="metadata"
+/>
+
+3. PRODUCT DETAILS
+Allow customer to:
+- Select size
+- View product information
+- See price
+- See image/video
+- Order through WhatsApp
+
+WhatsApp message must contain:
+Product name
+Selected size
+Price
+Reference image/link
+Availability confirmation request
+
+Use encodeURIComponent() for the WhatsApp message.
+
+Do NOT expose any secret API keys.
+
+4. ADMIN
+Route:
+`/admin`
+
+Include:
+- Admin login UI
+- Product creation
+- Product editing
+- Product deletion
+- Stock enable/disable
+- Title
+- Category
+- Price
+- MRP
+- Sizes
+- Description
+- Image URL
+- Video URL
+
+5. SUPABASE
+Keep the project compatible with:
+VITE_SUPABASE_URL
+VITE_SUPABASE_ANON_KEY
+
+Never hardcode private Supabase service-role keys.
+
+Use the existing `supabase/schema.sql` if present.
+
+6. STORE LOCATION
+Display:
+
+Gurudev Collection
+Chhatrapati Sambhajinagar (Aurangabad), Maharashtra
+Shahganj
+HP Petrol Pump area
+
+Add:
+- Map section
+- Call Store button only if a real store phone number is configured
+- WhatsApp button using environment variable
+
+Do not invent a phone number.
+
+7. SEO
+Add appropriate:
+- title
+- meta description
+- local business wording
+- Gurudev Collection
+- Chhatrapati Sambhajinagar
+- Aurangabad
+- Shahganj
+- Maharashtra
+
+8. PERFORMANCE
+- Lazy-load product images
+- Optimize video loading
+- Avoid unnecessary dependencies
+- Keep bundle reasonable
+- No console errors
+- No broken links
+- No React warnings
+
+9. DEPLOYMENT
+The project MUST build successfully from:
+
+cd app
+npm install
+npm run build
+
+The Vite output should be:
+
+app/dist/
+
+Make sure Vercel can deploy the project.
+
+If the repository root contains `app/`, configure deployment/build settings appropriately instead of moving the project into another nested folder.
+
+10. FINAL VERIFICATION
+After all changes run:
+
+npm install
+npm run build
+
+If build fails:
+- inspect the actual error
+- fix it
+- run the build again
+
+Do not stop at explaining an error.
+
+The final goal is a completely working Gurudev Collection website that can be deployed to Vercel from GitHub.
+
+IMPORTANT:
+Do not delete the existing project and start an unrelated project.
+Do not create unnecessary nested folders.
+Do not truncate existing source code.
+Do not use fake credentials.
+Do not invent an exact address or phone number.
