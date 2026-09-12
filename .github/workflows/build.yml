@@ -1,76 +1,87 @@
-Act as a Senior Full-Stack React Architect and UI/UX Engineer.
+Act as a Senior Full-Stack React Architect, DevOps Engineer and GitHub Actions expert.
 
-Build and finalize the Gurudev Collection luxury e-commerce website using the project already extracted inside:
+I have a ZIP file created by ChatGPT for my website:
+GurudevCollection_Code.zip
+
+IMPORTANT:
+1. Find the ZIP file in the repository.
+2. Extract/unzip it automatically.
+3. The extracted website project MUST be placed directly inside:
 
 app/
 
-FIRST:
-Inspect the entire `app/` directory and understand the existing code before making changes.
+FINAL REQUIRED STRUCTURE:
 
-TECHNOLOGY REQUIREMENTS:
-- React
-- Vite
-- Tailwind CSS
-- React Router
-- Lucide React
-- Supabase-ready architecture
-- Vercel deployment compatible
+repository/
+├── app/
+│   ├── package.json
+│   ├── index.html
+│   ├── vite.config.js
+│   ├── tailwind.config.js
+│   ├── postcss.config.js
+│   ├── src/
+│   ├── supabase/
+│   └── ...
+└── .github/
+    └── workflows/
+        └── build.yml
 
-BRAND:
+CRITICAL:
+`app/package.json` MUST exist directly inside `app`.
+
+NEVER create:
+
+app/GurudevCollection_Code/package.json
+app/gurudev-collection/package.json
+app/project/package.json
+
+If the ZIP contains a parent folder, remove that unnecessary nesting and put the actual project files directly into `app/`.
+
+Do not delete or truncate valid source code.
+
+After extraction, inspect the complete project.
+
+PROJECT:
 Gurudev Collection
 
 LOCATION:
 Chhatrapati Sambhajinagar (Aurangabad), Maharashtra
 Shahganj
-Near/at HP Petrol Pump, Shahganj
+HP Petrol Pump area
 
-DESIGN:
-- Matte Black: #0a0a0a
-- Charcoal: #141414
-- Metallic Gold: #D4AF37
-- White: #ffffff
-- Off White: #f3f4f6
-- Premium luxury fashion aesthetic
-- Mobile-first
-- Smooth animations
-- Responsive 2-column mobile product grid
-- 3-column tablet
-- 4-column desktop
+Do not invent an exact street number or phone number.
 
-REQUIRED FEATURES:
+TECHNOLOGY:
+- React
+- Vite
+- Tailwind CSS
+- React Router
+- Lucide React
+- Supabase-ready
+- Vercel-ready
 
-1. HOME PAGE
-- Luxury hero section
-- "Gurudev Collection"
-- "Premium Style & Modern Fits"
-- Shop Collection CTA
+WEBSITE REQUIREMENTS:
+- Premium luxury clothing design
+- Matte black #0a0a0a
+- Charcoal #141414
+- Metallic gold #D4AF37
+- White/off-white
+- Mobile-first responsive design
 - Product catalog
 - Categories
-- Sorting
 - Product cards
 - Product detail modal
-- Footer
-- Store location/contact section
-
-2. PRODUCTS
-Support:
-- T-Shirts
-- Shirts
-- Jeans
-- Traditional
-- Jackets
-
-Show:
-- Product image
-- Optional video preview
-- Product title
-- Selling price
-- MRP
-- Discount percentage
-- Available sizes
+- Product image/video support
+- Sizes
+- Price/MRP/discount
 - Stock status
+- WhatsApp ordering
+- Store location
+- Admin page
+- Supabase integration
+- SEO for Chhatrapati Sambhajinagar/Aurangabad/Shahganj
 
-If video_url exists, use:
+If a video URL exists, preserve:
 
 <video
   autoPlay
@@ -80,121 +91,125 @@ If video_url exists, use:
   preload="metadata"
 />
 
-3. PRODUCT DETAILS
-Allow customer to:
-- Select size
-- View product information
-- See price
-- See image/video
-- Order through WhatsApp
+WhatsApp ordering must use encodeURIComponent().
 
-WhatsApp message must contain:
-Product name
-Selected size
-Price
-Reference image/link
-Availability confirmation request
+Never expose Supabase service-role/private keys.
 
-Use encodeURIComponent() for the WhatsApp message.
+After placing the project inside `app`, verify the files.
 
-Do NOT expose any secret API keys.
-
-4. ADMIN
-Route:
-`/admin`
-
-Include:
-- Admin login UI
-- Product creation
-- Product editing
-- Product deletion
-- Stock enable/disable
-- Title
-- Category
-- Price
-- MRP
-- Sizes
-- Description
-- Image URL
-- Video URL
-
-5. SUPABASE
-Keep the project compatible with:
-VITE_SUPABASE_URL
-VITE_SUPABASE_ANON_KEY
-
-Never hardcode private Supabase service-role keys.
-
-Use the existing `supabase/schema.sql` if present.
-
-6. STORE LOCATION
-Display:
-
-Gurudev Collection
-Chhatrapati Sambhajinagar (Aurangabad), Maharashtra
-Shahganj
-HP Petrol Pump area
-
-Add:
-- Map section
-- Call Store button only if a real store phone number is configured
-- WhatsApp button using environment variable
-
-Do not invent a phone number.
-
-7. SEO
-Add appropriate:
-- title
-- meta description
-- local business wording
-- Gurudev Collection
-- Chhatrapati Sambhajinagar
-- Aurangabad
-- Shahganj
-- Maharashtra
-
-8. PERFORMANCE
-- Lazy-load product images
-- Optimize video loading
-- Avoid unnecessary dependencies
-- Keep bundle reasonable
-- No console errors
-- No broken links
-- No React warnings
-
-9. DEPLOYMENT
-The project MUST build successfully from:
+Then run:
 
 cd app
 npm install
 npm run build
 
-The Vite output should be:
+If there are build errors, FIX THEM AUTOMATICALLY.
 
-app/dist/
+Do not just report the error.
 
-Make sure Vercel can deploy the project.
+Run the build again after every fix until successful.
 
-If the repository root contains `app/`, configure deployment/build settings appropriately instead of moving the project into another nested folder.
+The final build MUST generate:
 
-10. FINAL VERIFICATION
-After all changes run:
-
-npm install
-npm run build
-
-If build fails:
-- inspect the actual error
-- fix it
-- run the build again
-
-Do not stop at explaining an error.
-
-The final goal is a completely working Gurudev Collection website that can be deployed to Vercel from GitHub.
+app/dist/index.html
 
 IMPORTANT:
-Do not delete the existing project and start an unrelated project.
-Do not create unnecessary nested folders.
-Do not truncate existing source code.
-Do not use fake credentials.
-Do not invent an exact address or phone number.
+Do NOT put this instruction text inside `.github/workflows/build.yml`.
+
+Now configure/fix GitHub Actions for the Gurudev Collection website.
+
+IMPORTANT:
+The workflow file is:
+
+.github/workflows/build.yml
+
+It MUST contain ONLY valid GitHub Actions YAML.
+
+Do NOT paste natural-language instructions into build.yml.
+
+Replace the existing invalid workflow if necessary.
+
+Use this exact workflow:
+
+name: Build Gurudev Collection Website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: app
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build website
+        run: npm run build
+
+      - name: Verify build output
+        run: test -f dist/index.html
+
+      - name: Upload website build
+        uses: actions/upload-artifact@v4
+        with:
+          name: gurudev-collection-dist
+          path: app/dist
+
+Before running the workflow, verify:
+
+app/package.json
+app/index.html
+app/src/
+app/vite.config.js
+
+MUST EXIST.
+
+There must NOT be an extra nested project directory.
+
+Correct:
+app/package.json
+
+Wrong:
+app/GurudevCollection_Code/package.json
+
+Then execute the build.
+
+If npm install or npm run build fails:
+1. Read the actual error.
+2. Fix the source/configuration.
+3. Run the build again.
+4. Continue until the build succeeds.
+
+Do not hide errors.
+Do not skip verification.
+Do not create fake files just to make the workflow green.
+
+Final requirement:
+
+The GitHub Actions build must successfully produce:
+
+app/dist/index.html
+
+The generated `dist` folder must be uploaded as the GitHub Actions artifact named:
+
+gurudev-collection-dist
+
+The website must remain compatible with Vercel deployment.
